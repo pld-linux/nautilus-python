@@ -61,9 +61,12 @@ EOF
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0/python
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	NAUTILUS_LIBDIR=%{_libdir}
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-1.0/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -72,5 +75,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %{_libdir}/nautilus-python
-%{_libdir}/nautilus/extensions-1.0/*
+%{_libdir}/nautilus/extensions-1.0/*.so
+%dir %{_libdir}/nautilus/extensions-1.0/python
 %{_pkgconfigdir}/nautilus-python.pc
