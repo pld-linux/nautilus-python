@@ -1,12 +1,13 @@
 Summary:	Python bindings for GNOME 2's nautilus
+Summary(pl.UTF-8):	Wiązania Pythona dla nautilusa z GNOME 2
 Name:		nautilus-python
 Version:	0.4.3
 Release:	1
 License:	LGPL
-Group:		Libraries/Python
+Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/0.4/%{name}-%{version}.tar.bz2
 # Source0-md5:	d676ff598426fbcda3f103d41d60d520
-URL:		http://www.gnome.org
+URL:		http://www.gnome.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
@@ -16,12 +17,17 @@ BuildRequires:	python-devel
 BuildRequires:	python-gnome-devel
 BuildRequires:	python-gnome-vfs >= 2.12.0
 BuildRequires:	python-pygtk-devel
+BuildRequires:	sed >= 4.0
 Requires:	python-gnome-gconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 These are unstable bindings for the nautilus extension library
-introduced in Gnome 2.6.
+introduced in GNOME 2.6.
+
+%description -l pl.UTF-8
+Ten pakiet zawiera niestabilne wiązania dla biblioteki rozszerzeń
+nautilusa wprowadzonej w GNOME 2.6.
 
 %prep
 %setup -q
@@ -75,6 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %{_libdir}/nautilus-python
-%{_libdir}/nautilus/extensions-1.0/*.so
+%attr(755,root,root) %{_libdir}/nautilus/extensions-1.0/*.so
 %dir %{_libdir}/nautilus/extensions-1.0/python
 %{_pkgconfigdir}/nautilus-python.pc
