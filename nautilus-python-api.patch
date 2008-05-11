@@ -1,0 +1,68 @@
+diff -Nur nautilus-python-0.5.0.orig/src/nautilus.defs nautilus-python-0.5.0/src/nautilus.defs
+--- nautilus-python-0.5.0.orig/src/nautilus.defs	2008-01-11 11:26:55.000000000 +0000
++++ nautilus-python-0.5.0/src/nautilus.defs	2008-05-10 11:54:48.000000000 +0100
+@@ -129,6 +129,18 @@
+   (return-type "gboolean")
+ )
+ 
++(define-method get_file_type
++  (of-object "NautilusFileInfo")
++  (c-name "nautilus_file_info_get_file_type")
++  (return-type "GFileType")
++)
++
++(define-method get_location
++  (of-object "NautilusFileInfo")
++  (c-name "nautilus_file_info_get_location")
++  (return-type "GFile")
++)
++
+ (define-method get_name
+   (of-object "NautilusFileInfo")
+   (c-name "nautilus_file_info_get_name")
+@@ -141,6 +153,18 @@
+   (return-type "char*")
+ )
+ 
++(define-method get_activation_uri
++  (of-object "NautilusFileInfo")
++  (c-name "nautilus_file_info_get_activation_uri")
++  (return-type "char*")
++)
++
++(define-method get_parent_location
++  (of-object "NautilusFileInfo")
++  (c-name "nautilus_file_info_get_parent_location")
++  (return-type "GFile")
++)
++
+ (define-method get_parent_uri
+   (of-object "NautilusFileInfo")
+   (c-name "nautilus_file_info_get_parent_uri")
+@@ -174,12 +198,6 @@
+   (return-type "gboolean")
+ )
+ 
+-(define-method get_vfs_file_info
+-  (of-object "NautilusFileInfo")
+-  (c-name "nautilus_file_info_get_vfs_file_info")
+-  (return-type "GnomeVFSFileInfo*")
+-)
+-
+ (define-method add_emblem
+   (of-object "NautilusFileInfo")
+   (c-name "nautilus_file_info_add_emblem")
+diff -Nur nautilus-python-0.5.0.orig/src/nautilus-python.c nautilus-python-0.5.0/src/nautilus-python.c
+--- nautilus-python-0.5.0.orig/src/nautilus-python.c	2008-01-11 11:26:55.000000000 +0000
++++ nautilus-python-0.5.0/src/nautilus-python.c	2008-05-10 11:54:48.000000000 +0100
+@@ -205,8 +205,8 @@
+ 	if (Py_IsInitialized())
+ 		return TRUE;
+ 
+-  	debug("g_module_open " PY_LIB_LOC "/libpython" PYTHON_VERSION "." G_MODULE_SUFFIX);
+-	libpython = g_module_open(PY_LIB_LOC "/libpython" PYTHON_VERSION "." G_MODULE_SUFFIX, 0);
++  	debug("g_module_open " PY_LIB_LOC "/libpython" PYTHON_VERSION "." G_MODULE_SUFFIX ".1");
++	libpython = g_module_open(PY_LIB_LOC "/libpython" PYTHON_VERSION "." G_MODULE_SUFFIX ".1", 0);
+ 	if (!libpython)
+ 		g_warning("g_module_open libpython failed: %s", g_module_error());
+ 	debug("Py_Initialize");
