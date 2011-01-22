@@ -58,6 +58,9 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 # install examples
 cp examples/{README,*.py} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+# to devel, but we have none
+rm $RPM_BUILD_ROOT%{_pkgconfigdir}/nautilus-python.pc
+
 rm -f $RPM_BUILD_ROOT%{_libdir}/nautilus{-python,/extensions-2.0}/*.la
 rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}
 
@@ -71,7 +74,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/nautilus-python/nautilus.so
 %attr(755,root,root) %{_libdir}/nautilus/extensions-2.0/libnautilus-python.so
 %dir %{_libdir}/nautilus/extensions-2.0/python
-%{_pkgconfigdir}/nautilus-python.pc
 
 %files examples
 %defattr(644,root,root,755)
