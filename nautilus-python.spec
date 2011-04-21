@@ -1,14 +1,14 @@
 Summary:	Python bindings for GNOME 2's nautilus
 Summary(pl.UTF-8):	Wiązania Pythona dla nautilusa z GNOME 2
 Name:		nautilus-python
-Version:	0.6.1
-Release:	4
+Version:	1.0
+Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/0.6/%{name}-%{version}.tar.bz2
-# Source0-md5:	fa56dadfa98b7b3d29408d57f01756a5
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/1.0/%{name}-%{version}.tar.bz2
+# Source0-md5:	64ceb67b6b167c2d17ac46f23ec70828
 URL:		http://www.gnome.org/
-BuildRequires:	nautilus-devel >= 2.24.0
+BuildRequires:	nautilus-devel >= 3.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	python-gnome-devel
@@ -41,7 +41,7 @@ Przykładowe skrypty.
 %prep
 %setup -q
 
-sed -i 's/codegen.py/codegen.pyc/' configure
+%{__sed} -i 's/codegen.py/codegen.pyc/' configure
 
 %build
 %configure
@@ -49,7 +49,7 @@ sed -i 's/codegen.py/codegen.pyc/' configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-2.0/python
+install -d $RPM_BUILD_ROOT%{_datadir}/nautilus-python/extensions
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
@@ -59,10 +59,10 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp examples/{README,*.py} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 # to devel, but we have none
-rm $RPM_BUILD_ROOT%{_pkgconfigdir}/nautilus-python.pc
+%{__rm} $RPM_BUILD_ROOT%{_pkgconfigdir}/nautilus-python.pc
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/nautilus{-python,/extensions-2.0}/*.la
-rm -rf $RPM_BUILD_ROOT%{_datadir}/doc/%{name}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.la
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/doc/%{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -70,10 +70,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
-%dir %{_libdir}/nautilus-python
-%attr(755,root,root) %{_libdir}/nautilus-python/nautilus.so
-%attr(755,root,root) %{_libdir}/nautilus/extensions-2.0/libnautilus-python.so
-%dir %{_libdir}/nautilus/extensions-2.0/python
+%attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-python.so
+%dir %{_datadir}/nautilus-python/extensions
 
 %files examples
 %defattr(644,root,root,755)
