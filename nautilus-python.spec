@@ -8,6 +8,8 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/1.0/%{name}-%{version}.tar.bz2
 # Source0-md5:	64ceb67b6b167c2d17ac46f23ec70828
 URL:		http://www.gnome.org/
+BuildRequires:	gtk-doc >= 1.9
+BuildRequires:	libxslt-progs
 BuildRequires:	nautilus-devel >= 3.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
@@ -24,22 +26,50 @@ introduced in GNOME 2.6.
 Ten pakiet zawiera niestabilne wiązania dla biblioteki rozszerzeń
 nautilusa wprowadzonej w GNOME 2.6.
 
+%package devel
+Summary:	Development files for Python Nautilus extensions
+Summary(pl.UTF-8):	Pliki programistyczne dla pythonowych rozszerzeń Nautilusa
+Group:		Development/Libraries
+# doesn't require base; the only file is pkg-config specific, so let's require it
+Requires:	pkgconfig
+
+%description devel
+Development files for Nautilus extensions written in Python.
+
+%description devel -l pl.UTF-8
+Pliki programistyczne dla rozszerzeń zarządcy plików Nautilus pisanych
+w Pythonie.
+
+%package apidocs
+Summary:	Python Nautilus API documentation
+Summary(pl.UTF-8):	Dokumentacja API Pythona dla rozszerzeń Nautilusa
+Group:		Documentation
+
+%description apidocs
+Python Nautilus API documentation.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API Pythona dla rozszerzeń zarządcy plików Nautilus.
+
 %package examples
-Summary:	Example scripts
-Summary(pl.UTF-8):	Przykładowe skrypty
+Summary:	Example Python extensions for Nautilus file manager
+Summary(pl.UTF-8):	Przykładowe pythonowe rozszerzenia dla zarządcy plików Nautilus
 Group:		Libraries/Python
 
 %description examples
-Example scripts.
+Example Python extensions for Nautilus file manager.
 
 %description examples -l pl.UTF-8
-Przykładowe skrypty.
+Przykładowe rozszerzenia dla zarządcy plików Nautilus napisane w
+Pythonie.
 
 %prep
 %setup -q
 
 %build
-%configure
+%configure \
+	--enable-gtk-doc \
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
@@ -48,13 +78,17 @@ install -d $RPM_BUILD_ROOT%{_datadir}/nautilus-python/extensions
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
-
-# install examples
-cp examples/{README,*.py} $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+	DESTDIR=$RPM_BUILD_ROOT \
+	HTMLdir=%{_gtkdocdir}/nautilus-python
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/*.la
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/doc/%{name}
+
+# not installed because of incomplete docs/Makefile
+cp -p docs/html/* $RPM_BUILD_ROOT%{_gtkdocdir}/nautilus-python
+
+# move examples
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/nautilus-python/README $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/nautilus-python/examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,7 +99,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-python.so
 %dir %{_datadir}/nautilus-python
 %dir %{_datadir}/nautilus-python/extensions
+
+%files devel
+%defattr(644,root,root,755)
 %{_pkgconfigdir}/nautilus-python.pc
+
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/nautilus-python
 
 %files examples
 %defattr(644,root,root,755)
