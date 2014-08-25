@@ -2,7 +2,7 @@ Summary:	Python bindings for GNOME 3's nautilus
 Summary(pl.UTF-8):	Wiązania Pythona dla nautilusa z GNOME 3
 Name:		nautilus-python
 Version:	1.0
-Release:	8
+Release:	9
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/1.0/%{name}-%{version}.tar.bz2
@@ -14,6 +14,7 @@ BuildRequires:	nautilus-devel >= 3.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	python-pygobject-devel >= 2.28.2
+BuildRequires:	python-pygobject-apidocs >= 2.28.2
 Requires:	nautilus >= 3.0.0
 Requires:	python-pygobject >= 2.28.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,8 +75,9 @@ Pythonie.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_datadir}/nautilus-python/extensions
-install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+install -d $RPM_BUILD_ROOT%{_datadir}/nautilus-python/extensions \
+	$RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version} \
+	$RPM_BUILD_ROOT%{_libdir}/nautilus/extensions-3.0/python
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -97,6 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/nautilus/extensions-3.0/libnautilus-python.so
+%dir %{_libdir}/nautilus/extensions-3.0/python
 %dir %{_datadir}/nautilus-python
 %dir %{_datadir}/nautilus-python/extensions
 
