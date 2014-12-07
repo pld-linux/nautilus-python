@@ -2,7 +2,7 @@ Summary:	Python bindings for GNOME 3's nautilus
 Summary(pl.UTF-8):	Wiązania Pythona dla nautilusa z GNOME 3
 Name:		nautilus-python
 Version:	1.0
-Release:	9
+Release:	10
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/1.0/%{name}-%{version}.tar.bz2
