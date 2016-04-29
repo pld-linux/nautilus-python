@@ -2,7 +2,7 @@ Summary:	Python bindings for GNOME 3's nautilus
 Summary(pl.UTF-8):	Wiązania Pythona dla nautilusa z GNOME 3
 Name:		nautilus-python
 Version:	1.0
-Release:	10
+Release:	11
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/1.0/%{name}-%{version}.tar.bz2
@@ -13,8 +13,8 @@ BuildRequires:	libxslt-progs
 BuildRequires:	nautilus-devel >= 3.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel
-BuildRequires:	python-pygobject-devel >= 2.28.2
 BuildRequires:	python-pygobject-apidocs >= 2.28.2
+BuildRequires:	python-pygobject-devel >= 2.28.2
 Requires:	nautilus >= 3.0.0
 Requires:	python-pygobject >= 2.28.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,6 +45,9 @@ w Pythonie.
 Summary:	Python Nautilus API documentation
 Summary(pl.UTF-8):	Dokumentacja API Pythona dla rozszerzeń Nautilusa
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 Python Nautilus API documentation.
