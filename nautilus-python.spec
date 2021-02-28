@@ -46,9 +46,7 @@ w Pythonie.
 Summary:	Python Nautilus API documentation
 Summary(pl.UTF-8):	Dokumentacja API Pythona dla rozszerzeń Nautilusa
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 Python Nautilus API documentation.
