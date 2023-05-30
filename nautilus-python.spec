@@ -5,15 +5,16 @@ Version:	1.2.3
 Release:	1
 License:	GPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/nautilus-python/1.2/%{name}-%{version}.tar.xz
+Source0:	https://download.gnome.org/sources/nautilus-python/1.2/%{name}-%{version}.tar.xz
 # Source0-md5:	adb0886ef62df810ba31c9dbd7e821c0
-URL:		http://www.gnome.org/
+URL:		https://www.gnome.org/
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	libxslt-progs
 BuildRequires:	nautilus-devel >= 3.0.0
 BuildRequires:	pkgconfig
 BuildRequires:	python-devel >= 1:2
 BuildRequires:	python-pygobject3-devel >= 3.0.0
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	nautilus >= 3.0.0
