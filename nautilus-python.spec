@@ -25,6 +25,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 Requires:	nautilus >= 43
 Requires:	python-pygobject3 >= 3.0.0
+Obsoletes:	nautilus3-python < 4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -43,6 +44,7 @@ Summary(pl.UTF-8):	Pliki programistyczne dla pythonowych rozszerzeń Nautilusa
 Group:		Development/Libraries
 # doesn't require base; the only file is pkg-config specific, so let's require it
 Requires:	pkgconfig
+Obsoletes:	nautilus3-python-devel < 4
 BuildArch:	noarch
 
 %description devel
@@ -56,6 +58,7 @@ pisanych w Pythonie.
 Summary:	Python Nautilus 4 API documentation
 Summary(pl.UTF-8):	Dokumentacja API Pythona dla rozszerzeń Nautilusa 4
 Group:		Documentation
+Obsoletes:	nautilus3-python-apidocs < 4
 BuildArch:	noarch
 
 %description apidocs
@@ -68,6 +71,7 @@ Dokumentacja API Pythona dla rozszerzeń zarządcy plików Nautilus 4.
 Summary:	Example Python extensions for Nautilus 4 file manager
 Summary(pl.UTF-8):	Przykładowe pythonowe rozszerzenia dla zarządcy plików Nautilus 4
 Group:		Libraries/Python
+Obsoletes:	nautilus3-python-examples < 4
 
 %description examples
 Example Python extensions for Nautilus 4 file manager.
