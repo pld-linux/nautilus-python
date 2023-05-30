@@ -7,7 +7,7 @@ License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/nautilus-python/1.2/%{name}-%{version}.tar.xz
 # Source0-md5:	adb0886ef62df810ba31c9dbd7e821c0
-URL:		https://www.gnome.org/
+URL:		https://wiki.gnome.org/Projects/NautilusPython
 BuildRequires:	gtk-doc >= 1.14
 BuildRequires:	libxslt-progs
 BuildRequires:	nautilus-devel >= 3.0.0
