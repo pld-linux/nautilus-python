@@ -5,12 +5,12 @@
 Summary:	Python bindings for GNOME nautilus 4
 Summary(pl.UTF-8):	Wiązania Pythona dla nautilusa 4 z GNOME
 Name:		nautilus-python
-Version:	4.0
+Version:	4.0.1
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/nautilus-python/4.0/%{name}-%{version}.tar.xz
-# Source0-md5:	adf8fd3f52cbeb90dd693abb74a99d50
+# Source0-md5:	ae577de94059968003c723d7f039c45f
 URL:		https://wiki.gnome.org/Projects/NautilusPython
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.14}
 BuildRequires:	libxslt-progs
