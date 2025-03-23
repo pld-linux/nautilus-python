@@ -6,7 +6,7 @@ Summary:	Python bindings for GNOME nautilus 4
 Summary(pl.UTF-8):	Wiązania Pythona dla nautilusa 4 z GNOME
 Name:		nautilus-python
 Version:	4.0.1
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/nautilus-python/4.0/%{name}-%{version}.tar.xz
@@ -84,17 +84,17 @@ Pythonie.
 %setup -q
 
 %build
-%meson build \
+%meson \
 	%{?with_apidocs:-Ddocs=enabled}
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_datadir}/nautilus-python/extensions \
 	$RPM_BUILD_ROOT%{_examplesdir}
 
-%ninja_install -C build
+%meson_install
 
 # move examples
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/nautilus-python/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
